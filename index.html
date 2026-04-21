@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cymatics Lab — The Resonance Forge</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header>
+        <div>
+          <h1>Cymatics Lab</h1>
+          <p class="subtitle">The Resonance Forge</p>
+        </div>
+        <div class="header-actions">
+          <button id="playToggle">▶ Play Tone</button>
+          <button id="resetBtn">Reset Medium</button>
+          <button id="savePatternBtn">Save Pattern</button>
+          <button id="screenshotBtn">Export PNG</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="sim-panel">
+          <canvas id="simCanvas" width="900" height="560" aria-label="cymatics simulation canvas"></canvas>
+          <div id="resonanceBanner" class="resonance-banner">Resonance lock detected ✨</div>
+        </section>
+
+        <aside class="control-panel">
+          <div class="card">
+            <h2>Experiment Mode</h2>
+            <select id="modeSelect">
+              <option value="chladni">Chladni Plate</option>
+              <option value="liquid">Liquid Surface</option>
+              <option value="oobleck">Oobleck</option>
+              <option value="bubble">Bubble Resonance</option>
+              <option value="field">Resonance Field</option>
+            </select>
+            <div class="grid-2">
+              <label>Plate Shape
+                <select id="shapeSelect">
+                  <option value="square">Square</option>
+                  <option value="circle">Circle</option>
+                </select>
+              </label>
+              <label>Plate Size
+                <input id="plateSize" type="range" min="0.5" max="1.25" step="0.01" value="0.92" />
+              </label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Tone Controls</h2>
+            <label>Frequency (Hz)
+              <input id="freqSlider" type="range" min="20" max="1600" step="0.1" value="220" />
+            </label>
+            <input id="freqInput" type="number" min="0.1" step="0.1" value="220" />
+            <label>Amplitude
+              <input id="ampSlider" type="range" min="0" max="1" step="0.01" value="0.18" />
+            </label>
+            <div class="grid-2">
+              <label><input id="lockNote" type="checkbox" /> Lock to nearest note</label>
+              <label><input id="autoSweep" type="checkbox" /> Auto sweep</label>
+              <label><input id="micToggle" type="checkbox" /> Mic input</label>
+              <label><input id="cinematicMode" type="checkbox" /> Cinematic UI fade</label>
+            </div>
+            <div class="preset-row" id="presetRow"></div>
+          </div>
+
+          <div class="card">
+            <h2>Resonance Telemetry</h2>
+            <div id="metrics"></div>
+            <div id="analysis"></div>
+          </div>
+
+          <div class="card">
+            <h2>Discoveries</h2>
+            <ul id="discoveries"></ul>
+          </div>
+
+          <div class="card">
+            <h2>Resonance Archive</h2>
+            <div id="archive" class="archive-grid"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <template id="archiveCardTemplate">
+      <article class="archive-card">
+        <img alt="Saved pattern" />
+        <div class="archive-meta"></div>
+      </article>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
